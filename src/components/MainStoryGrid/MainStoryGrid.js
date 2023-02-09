@@ -56,7 +56,7 @@ const Wrapper = styled.div`
     'secondary-stories'
     'opinion-stories'
     'advertisement';
-  gap: 48px;
+  gap: 1rem;
   margin-bottom: 48px;
 
   @media ${QUERIES.tabletAndUp} {
@@ -67,10 +67,24 @@ const Wrapper = styled.div`
     grid-template-columns: 2fr 1fr;
 
   }
+
+  @media ${QUERIES.laptopAndUp} {
+    grid-template-areas: 
+      'main-story secondary-stories opinion-stories'
+      'main-story advertisement advertisement';
+      grid-template-columns: 3fr 2fr 1.8fr;
+      grid-template-rows: 1fr 0.25fr;
+
+  }
+
 `;
 
 const MainStorySection = styled.section`
   grid-area: main-story;
+  @media ${QUERIES.tabletAndUp}{
+    border-right: 2px solid ${COLORS.gray[300]};
+    padding-right: 1rem;
+  }
 `;
 
 const SecondaryStorySection = styled.section`
@@ -84,7 +98,10 @@ const StoryList = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  
+  @media ${QUERIES.laptopAndUp}{
+    border-right: 2px solid ${COLORS.gray[300]};
+    padding-right: 1rem;
+  }
   `;
   
 
@@ -92,33 +109,50 @@ const StoryList = styled.div`
   @media ${QUERIES.tabletOnly} {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
     gap: 2rem;
+  }
+
+  @media ${QUERIES.laptopAndUp} {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-right: none;
   }
  `; 
   const OpinionSection = styled.section`
   grid-area: opinion-stories;
+  
   `;
 
   const OpinionStoryWrapper = styled.div`
-    &:not(last-of-type){
+    &:not(:last-of-type){
       border-bottom: 1px solid ${COLORS.gray[300]};
+      
+    }
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    @media ${QUERIES.tabletOnly} {
       margin-bottom: 1rem;
       padding-bottom: 1rem;
+      flex: 1;
+      &:not(:last-of-type){
+        border-bottom: none;
+        
+      }
     }
 
-    @media ${QUERIES.tabletOnly} {
-      &:not(last-of-type){
-        border-bottom: none;
-        margin-bottom: 1rem;
-        padding-bottom: 1rem;
-        flex: 1;
-      }
+    @media ${QUERIES.laptopAndUp} {
     }
   `;
   
   const AdvertisementSection = styled.section`
   grid-area: advertisement;
+  @media ${QUERIES.laptopAndUp}{
+    border-top: 2px solid ${COLORS.gray[300]};
+    padding-top: 1rem;
+  } 
   `;
   
   
