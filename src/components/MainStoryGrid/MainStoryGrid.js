@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { COLORS } from '../../constants';
+import { COLORS, QUERIES } from '../../constants';
 
 import {
   MAIN_STORY,
@@ -33,11 +33,13 @@ const MainStoryGrid = () => {
 
       <OpinionSection>
         <SectionTitle>Opinion</SectionTitle>
-        <StoryList>
+        <OpinionStoryList>
           {OPINION_STORIES.map((story, index) => (
-            <OpinionStory key={story.id} {...story} />
+            <OpinionStoryWrapper>
+              <OpinionStory key={story.id} {...story} />
+            </OpinionStoryWrapper>
           ))}
-        </StoryList>
+        </OpinionStoryList>
       </OpinionSection>
 
       <AdvertisementSection>
@@ -73,8 +75,34 @@ const StoryList = styled.div`
   flex-direction: column;
   `;
   
+
+ const OpinionStoryList = styled(StoryList)`
+  @media ${QUERIES.tabletOnly} {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 2rem;
+  }
+ `; 
   const OpinionSection = styled.section`
   grid-area: opinion-stories;
+  `;
+
+  const OpinionStoryWrapper = styled.div`
+    &:not(last-of-type){
+      border-bottom: 1px solid ${COLORS.gray[300]};
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    @media ${QUERIES.tabletOnly} {
+      &:not(last-of-type){
+        border-bottom: none;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        flex: 1;
+      }
+    }
   `;
   
   const AdvertisementSection = styled.section`
