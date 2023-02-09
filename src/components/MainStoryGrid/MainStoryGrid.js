@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { COLORS } from '../../constants';
 
 import {
   MAIN_STORY,
@@ -23,7 +24,9 @@ const MainStoryGrid = () => {
       <SecondaryStorySection>
         <StoryList>
           {SECONDARY_STORIES.map((story, index) => (
-            <SecondaryStory key={story.id} {...story} />
+            <SecondaryStoryWrapper  key={story.id}>
+              <SecondaryStory {...story} />
+            </SecondaryStoryWrapper>
           ))}
         </StoryList>
       </SecondaryStorySection>
@@ -61,19 +64,30 @@ const MainStorySection = styled.section`
 
 const SecondaryStorySection = styled.section`
   grid-area: secondary-stories;
+
+  
 `;
 
 const StoryList = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-const OpinionSection = styled.section`
+  `;
+  
+  const OpinionSection = styled.section`
   grid-area: opinion-stories;
-`;
-
-const AdvertisementSection = styled.section`
+  `;
+  
+  const AdvertisementSection = styled.section`
   grid-area: advertisement;
+  `;
+  
+  
+  const SecondaryStoryWrapper = styled.div`
+  &:not(:last-of-type){
+    border-bottom: 1px solid ${COLORS.gray[300]};
+  }
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
 `;
 
 export default MainStoryGrid;
